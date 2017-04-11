@@ -33,6 +33,8 @@ class DetailsRenderer {
         return this._renderText(details);
       case 'block':
         return this._renderBlock(details);
+      case 'cards':
+        return this._renderCards(details);
       case 'list':
         return this._renderList(details);
       default:
@@ -78,6 +80,36 @@ class DetailsRenderer {
     for (const item of list.items) {
       items.appendChild(this.render(item));
     }
+    element.appendChild(items);
+    return element;
+  }
+
+  /**
+   * @param {!DetailsJSON} list
+   * @return {!Element}
+   */
+  _renderCards(list) {
+    const element = this._dom.createElement('details', 'lighthouse-details');
+    if (list.header) {
+      element.appendChild(this._dom.createElement('summary')).textContent = list.header.text;
+    }
+
+    const items = this._dom.createElement('div', 'lighthouse-scorecards');
+    for (const item of list.items) {
+      const card = items.appendChild(
+          this._dom.createElement('div', 'lighthouse-scorecard', {title: item.snippet}));
+      const titleEl = this._dom.createElement('div', 'lighthouse-scorecard__title');
+      const valueEl = this._dom.createElement('div', 'lighthouse-scorecard__value');
+      const targetEl = this._dom.createElement('div', 'lighthouse-scorecard__target');
+
+      card.appendChild(titleEl).textContent = item.title;
+      card.appendChild(valueEl).textContent = item.value;
+
+      if (item.target) {
+        card.appendChild(targetEl).textContent = `target: ${item.target}`;
+      }
+    }
+
     element.appendChild(items);
     return element;
   }

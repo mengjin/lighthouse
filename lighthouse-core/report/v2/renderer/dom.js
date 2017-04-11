@@ -37,7 +37,9 @@ class DOM {
       element.className = className;
     }
     Object.keys(attrs).forEach(key => {
-      element.setAttribute(key, attrs[key]);
+      if (attrs[key] !== undefined) {
+        element.setAttribute(key, attrs[key]);
+      }
     });
     return element;
   }
