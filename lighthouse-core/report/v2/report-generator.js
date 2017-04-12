@@ -22,6 +22,8 @@ const REPORT_TEMPLATE = fs.readFileSync(__dirname + '/report-template.html', 'ut
 const REPORT_JAVASCRIPT = [
   fs.readFileSync(__dirname + '/renderer/dom.js', 'utf8'),
   fs.readFileSync(__dirname + '/renderer/details-renderer.js', 'utf8'),
+  fs.readFileSync(__dirname + '/../../lib/file-namer.js', 'utf8'),
+  fs.readFileSync(__dirname + '/logger.js', 'utf8'),
   fs.readFileSync(__dirname + '/renderer/report-renderer.js', 'utf8'),
 ].join(';\n');
 const REPORT_CSS = fs.readFileSync(__dirname + '/report-styles.css', 'utf8');
