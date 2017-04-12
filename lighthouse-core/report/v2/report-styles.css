@@ -48,11 +48,6 @@ body {
   line-height: var(--body-line-height);
 }
 
-:focus {
-  z-index: 1;
-  position: relative;
-}
-
 [hidden] {
   display: none !important;
 }
