@@ -54,6 +54,28 @@ function formatNumber(number) {
   return number.toLocaleString(undefined, {maximumFractionDigits: 1});
 }
 
+/**
+ * Format time.
+ * @param {string} date
+ * @return {string}
+ */
+function formatDateTime(date) {
+  const options = {
+    month: 'numeric', day: 'numeric', year: 'numeric',
+    hour: 'numeric', minute: 'numeric', timeZoneName: 'short'
+  };
+  let formatter = new Intl.DateTimeFormat('en-US', options);
+
+  // Force UTC if runtime timezone could not be detected.
+  // See https://github.com/GoogleChrome/lighthouse/issues/1056
+  const tz = formatter.resolvedOptions().timeZone;
+  if (!tz || tz.toLowerCase() === 'etc/unknown') {
+    options.timeZone = 'UTC';
+    formatter = new Intl.DateTimeFormat('en-US', options);
+  }
+  return formatter.format(new Date(date));
+}
+
 class ReportRenderer {
   /**
    * @param {!Document} document
@@ -147,14 +169,49 @@ class ReportRenderer {
 
   /**
    * @param {!ReportJSON} report
+   * @return {!DocumentFragment}
+   */
+  _renderReportHeader(report) {
+    const header = this._cloneTemplate('#tmpl-lighthouse-heading');
+    header.querySelector('.lighthouse-config__timestamp').textContent =
+        formatDateTime(report.generatedTime);
+    const url = header.querySelector('.lighthouse-metadata__url');
+    url.href = report.url;
+    url.textContent = report.url;
+
+    return header;
+  }
+
+  /**
+   * @param {!ReportJSON} report
+   * @return {!DocumentFragment}
+   */
+  _renderReportFooter(report) {
+    const footer = this._cloneTemplate('#tmpl-lighthouse-footer');
+    footer.querySelector('.lighthouse-footer__version').textContent = report.lighthouseVersion;
+    footer.querySelector('.lighthouse-footer__timestamp').textContent =
+        formatDateTime(report.generatedTime);
+    return footer;
+  }
+
+  /**
+   * @param {!ReportJSON} report
    * @return {!Element}
    */
   _renderReport(report) {
-    const element = this._dom.createElement('div', 'lh-report');
+    const container = this._dom._createElement('div', 'lighthouse-content');
+    const element = container.appendChild(this._createElement('div', 'lh-report'));
+
+    element.appendChild(this._renderReportHeader(report));
+
+    const categories = element.appendChild(this._createElement('div', 'lh-categories'));
     for (const category of report.reportCategories) {
-      element.appendChild(this._renderCategory(category));
+      categories.appendChild(this._renderCategory(category));
     }
-    return element;
+
+    container.appendChild(this._renderReportFooter(report));
+
+    return container;
   }
 
   /**
