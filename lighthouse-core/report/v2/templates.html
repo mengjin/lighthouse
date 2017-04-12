@@ -32,45 +32,55 @@
       --report-header-height: 81px;
       --report-header-bg-color: #fafafa;
     }
-    .lighthouse-header {
-      height: var(--report-header-height);
+    .lighthouse-header-wrapper {
       display: flex;
-      align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
+      height: var(--report-header-height);
+      width: 100%;
+      top: 0;
+      left: 0;
       border-bottom: 1px solid var(--report-border-color);
-      padding: 0 calc(var(--default-padding) * 2);
       position: fixed;
       z-index: 1;
       will-change: transform;
       background-color: var(--report-header-bg-color);
-      left: 0;
-      width: 100%;
-      top: 0;
+    }
+    .lighthouse-header {
+      width: var(--report-width);
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 calc(var(--default-padding) * 2);
     }
     .lighthouse-metadata {
       flex: 1 1 0;
       white-space: nowrap;
       padding-right: calc(var(--default-padding) / 2);
-      line-height: 1.6;
+      line-height: 20px;
+      color: var(--secondary-text-color);
+      overflow: hidden;
+    }
+    .lighthouse-metadata__results {
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .lighthouse-metadata__url {
+      color: currentColor;
     }
     .lighthouse-export {
       position: relative;
     }
     .lighthouse-export__button {
-      display: inline-flex;
       background-color: #fff;
       border: 1px solid var(--report-border-color);
-      box-sizing: border-box;
-      min-width: 5.14em;
-      padding: 0.7em 1.1em;
-      letter-spacing: 0.02em;
       border-radius: 3px;
       cursor: pointer;
-      color: var(--secondary-text-color);
       outline: none;
-      font-weight: 500;
+      height: 32px;
+      width: 48px;
+      background-repeat: no-repeat;
+      background-size: 20px;
+      background-position: 50% 50%;
     }
     .lighthouse-export__button:focus,
     .lighthouse-export__button.active {
@@ -82,7 +92,7 @@
     }
     .lighthouse-export__dropdown {
       position: absolute;
-      background-color: var(--report-header-bg-color);
+      background-color: #fff;
       border: 1px solid #ccc;
       border-radius: 3px;
       padding: calc(var(--default-padding) / 2) 0;
@@ -115,28 +125,7 @@
       background-position: 8px 50%;
       background-size: 18px;
       background-color: transparent;
-      opacity: 0.7;
       text-indent: 18px;
-    }
-    .lighthouse-export__dropdown .report-icon:hover {
-      opacity: 1;
-    }
-    .lighthouse-export__dropdown .report-icon--share {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>');
-      display: none;
-      height: 20px;
-    }
-    .lighthouse-export__dropdown .report-icon--print {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/><path fill="none" d="M0 0h24v24H0z"/></svg>');
-    }
-    .lighthouse-export__dropdown .report-icon--copy {
-      background-image: url('data:image/svg+xml;utf8,<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>');
-    }
-    .lighthouse-export__dropdown .report-icon--open {
-      background-image: url('data:image/svg+xml;utf8,<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z"/></svg>');
-    }
-    .lighthouse-export__dropdown .report-icon--download {
-      background-image: url('data:image/svg+xml;utf8,<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     }
     /* copy icon needs slight adjustments to look great */
     .lighthouse-export__dropdown .report-icon--copy {
@@ -184,52 +173,51 @@
       display: none;
     }
     @media screen and (max-width: 767px) {
-      .lighthouse-header {
-        padding: 0 var(--default-padding);
-      }
       .lighthouse-export__dropdown {
         right: 0;
         left: initial;
       }
+      .lighthouse-header {
+        padding: 0 var(--default-padding);
+      }
     }
   </style>
-  <div class="lighthouse-header">
-    <div class="lighthouse-metadata">
-      <div>Lighthouse results:</div>
-      <!--<div class="lighthouse-metadata__url"></div>-->
-      <a href="" class="lighthouse-metadata__url" target="_blank" rel="noopener"><!-- fill me --></a>
-      <!--<span>Generated on:</span>-->
-      <div class="lighthouse-config">
-        <span class="lighthouse-config__timestamp"><!-- fill me --></span> &bullet;
-        <details class="lighthouse-config__settings-toggle">
-          <summary>
-            <span>Runtime settings</span>
-            <span class="lighthouse-toggle-arrow" title="See report's runtime settings"></span>
-          </summary>
-          <div class="lighthouse-config__runtime">
-            <div>Environment</div>
-            <ul class="lighthouse-config__runtime-items">
-              {{#each runtimeConfig.environment }}
-              <li class="config-section__item">
-                <p class="config-section__desc">
-                  {{ this.name }} ({{ this.description }}):
-                  <strong> {{#if this.enabled }}Enabled{{else}}Disabled{{/if}}</strong>
-                </p>
-              </li>
-              {{/each}}
-            </ul>
-          </div>
-        </details>
+  <div class="lighthouse-header-wrapper">
+    <div class="lighthouse-header">
+      <div class="lighthouse-metadata">
+        <div class="lighthouse-metadata__results">Results for: <a href="" class="lighthouse-metadata__url" target="_blank" rel="noopener"><!-- fill me --></a></div>
+        <div class="lighthouse-config">
+          <span class="lighthouse-config__timestamp"><!-- fill me --></span> &bullet;
+          <details class="lighthouse-config__settings-toggle">
+            <summary>
+              <span>Runtime settings</span>
+              <span class="lighthouse-toggle-arrow" title="See report's runtime settings"></span>
+            </summary>
+            <div class="lighthouse-config__runtime">
+              <div>Environment</div>
+              <ul class="lighthouse-config__runtime-items">
+                {{#each runtimeConfig.environment }}
+                <li class="config-section__item">
+                  <p class="config-section__desc">
+                    {{ this.name }} ({{ this.description }}):
+                    <strong> {{#if this.enabled }}Enabled{{else}}Disabled{{/if}}</strong>
+                  </p>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </details>
+        </div>
       </div>
-    </div>
-    <div class="lighthouse-export">
-      <button class="lighthouse-export__button" title="Export report in different formats">Export...</button>
-      <div class="lighthouse-export__dropdown">
-        <a href="#" class="report-icon report-icon--print" data-action="print">Print...</a>
-        <a href="#" class="report-icon report-icon--copy" data-action="copy">Copy JSON</a>
-        <a href="#" class="report-icon report-icon--download" data-action="save-html">Save as HTML</a>
-        <a href="#" class="report-icon report-icon--download" data-action="save-json">Save as JSON</a>
-        <a href="#" class="report-icon report-icon--open" data-action="open-viewer">Open in Viewer</a>
+      <div class="lighthouse-export">
+        <button class="report-icon report-icon--share lighthouse-export__button" title="Export report"></button>
+        <div class="lighthouse-export__dropdown">
+          <a href="#" class="report-icon report-icon--print" data-action="print">Print...</a>
+          <a href="#" class="report-icon report-icon--copy" data-action="copy">Copy JSON</a>
+          <a href="#" class="report-icon report-icon--download" data-action="save-html">Save as HTML</a>
+          <a href="#" class="report-icon report-icon--download" data-action="save-json">Save as JSON</a>
+          <a href="#" class="report-icon report-icon--open" data-action="open-viewer">Open in Viewer</a>
+        </div>
       </div>
     </div>
   </div>
