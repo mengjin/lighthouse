@@ -29,7 +29,7 @@
 <template id="tmpl-lighthouse-heading">
   <style>
     :root {
-      --report-header-height: 81px;
+      --report-header-height: 58px;
       --report-header-bg-color: #fafafa;
     }
     .lighthouse-header-wrapper {
@@ -54,15 +54,15 @@
     }
     .lighthouse-metadata {
       flex: 1 1 0;
-      white-space: nowrap;
       padding-right: calc(var(--default-padding) / 2);
       line-height: 20px;
       color: var(--secondary-text-color);
-      overflow: hidden;
+      overflow-x: hidden;
     }
     .lighthouse-metadata__results {
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .lighthouse-metadata__url {
       color: currentColor;
@@ -135,14 +135,21 @@
     .lighthouse-config {
       display: flex;
     }
-    .lighthouse-config__runtime {
+    .lighthouse-env {
       padding: var(--default-padding) 0 var(--default-padding) calc(var(--default-padding) * 2);
       left: 0;
       top: 100%;
       position: absolute;
       width: 100%;
       background-color: var(--report-header-bg-color);
+      border-top: 1px solid var(--report-border-color);
       border-bottom: 1px solid var(--report-border-color);
+    }
+    .lighthouse-env__title {
+      font-size: var(--header-font-size);
+    }
+    .lighthouse-env__items {
+      margin: var(--default-padding) 0 0 0;
     }
     .lighthouse-config__timestamp {
       margin-right: 6px;
@@ -193,17 +200,16 @@
               <span>Runtime settings</span>
               <span class="lighthouse-toggle-arrow" title="See report's runtime settings"></span>
             </summary>
-            <div class="lighthouse-config__runtime">
-              <div>Environment</div>
-              <ul class="lighthouse-config__runtime-items">
-                {{#each runtimeConfig.environment }}
-                <li class="config-section__item">
-                  <p class="config-section__desc">
-                    {{ this.name }} ({{ this.description }}):
-                    <strong> {{#if this.enabled }}Enabled{{else}}Disabled{{/if}}</strong>
-                  </p>
-                </li>
-                {{/each}}
+            <div class="lighthouse-env">
+              <div class="lighthouse-env__title">Runtime environment</div>
+              <ul class="lighthouse-env__items">
+                <template id="tmpl-lighthouse-env__items">
+                  <li class="lighthouse-env__item">
+                    <span class="lighthouse-env__name">{{this.name }}</span>
+                    <span class="lighthouse-env__description">({{this.description}})</span>:
+                    <b class="lighthouse-env__enabled">{{#if this.enabled }}Enabled{{else}}Disabled{{/if}}</b>
+                  </li>
+                </template>
               </ul>
             </div>
           </details>

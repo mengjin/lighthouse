@@ -17,6 +17,7 @@
  :root {
   --text-font-family: '.SFNSDisplay-Regular', 'Helvetica Neue', 'Lucida Grande', sans-serif;
   --body-font-size: 13px;
+  --header-font-size: 16px;
   --default-padding: 16px;
 
   --secondary-text-color: #565656;
@@ -237,6 +238,7 @@ summary {
 
 .lh-audit > .lh-score {
   font-size: 16px;
+  font-size: var(--header-font-size);
 }
 
 /* Report */
@@ -321,7 +323,7 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
   max-width: 500px;
   line-height: 1.4;
   color: #fff; /*#e53935;*/
-  font-size: 16px;
+  font-size: var(--header-font-size);
   transition: transform 300ms ease-in-out;
   transform: translateY(-100%);
 }
