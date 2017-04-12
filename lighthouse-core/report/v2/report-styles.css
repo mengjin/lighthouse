@@ -252,7 +252,7 @@ summary {
   font-size: large;
 }
 
-.lh-categories {
+.lighthouse-categories {
   padding: calc(var(--default-padding) * 2) 0;
   max-width: var(--report-width);
   margin: 0 auto;
@@ -292,7 +292,6 @@ summary {
   font-weight: 400;
 }
 
-
 summary.lh-passed-audits-summary {
   margin: 10px 5px;
   font-size: 15px;
@@ -306,28 +305,28 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
   padding: 3px;
 }
 
-.log-wrapper {
+#lighthouse-log {
   position: fixed;
-  top: 0;
-  display: flex;
-  align-content: center;
-  width: 100%;
-  pointer-events: none;
+  background-color: #323232;
+  color: #fff;
+  min-height: 48px;
+  min-width: 288px;
+  padding: 16px 24px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 2px;
+  margin: 12px;
+  font-size: 14px;
+  cursor: default;
+  transition: transform 0.3s, opacity 0.3s;
+  transform: translateY(100px);
+  opacity: 0;
+  -webkit-font-smoothing: antialiased;
+  bottom: 0;
+  left: 0;
 }
-#log {
-  margin: 0 auto;
-  padding: 16px 32px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background-color: rgba(0,0,0,0.6);
-  max-width: 500px;
-  line-height: 1.4;
-  color: #fff; /*#e53935;*/
-  font-size: var(--header-font-size);
-  transition: transform 300ms ease-in-out;
-  transform: translateY(-100%);
-}
-#log.show {
+
+#lighthouse-log.show {
+  opacity: 1;
   transform: translateY(0);
 }
 

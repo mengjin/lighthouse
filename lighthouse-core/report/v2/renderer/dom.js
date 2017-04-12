@@ -44,11 +44,12 @@ class DOM {
 
   /**
    * @param {string} selector
+   * @param {Element=} context Parent node to query for templates within.
    * @return {!DocumentFragment} A clone of the template content.
    * @throws {Error}
    */
-  cloneTemplate(selector) {
-    const template = this._document.querySelector(selector);
+  cloneTemplate(selector, context = this._document) {
+    const template = context.querySelector(selector);
     if (!template) {
       throw new Error(`Template not found: template${selector}`);
     }
