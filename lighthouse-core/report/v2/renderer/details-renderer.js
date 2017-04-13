@@ -15,6 +15,8 @@
  */
 'use strict';
 
+/* globals self */
+
 class DetailsRenderer {
   /**
    * @param {!DOM} dom
@@ -85,6 +87,8 @@ class DetailsRenderer {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = DetailsRenderer;
+} else if (self) {
+  self.DetailsRenderer = DetailsRenderer;
 }
 
 /** @typedef {{type: string, text: string|undefined, header: DetailsJSON|undefined, items: Array<DetailsJSON>|undefined}} */

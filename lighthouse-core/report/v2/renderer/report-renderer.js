@@ -22,7 +22,7 @@
  * Dummy text for ensuring report robustness: </script> pre$`post %%LIGHTHOUSE_JSON%%
  */
 
-/* globals DOM, DetailsRenderer */
+/* globals self */
 
 const RATINGS = {
   PASS: {label: 'pass', minScore: 75},
@@ -57,9 +57,10 @@ function formatNumber(number) {
 class ReportRenderer {
   /**
    * @param {!Document} document
+   * @param {!DOM} DOM
+   * @param {!DetailsRenderer} DetailsRenderer
    */
-  constructor(document) {
-    this._dom = new DOM(document);
+  constructor(document, DOM, DetailsRenderer) {
     this._detailsRenderer = new DetailsRenderer(this._dom);
   }
 
@@ -183,6 +184,8 @@ class ReportRenderer {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = ReportRenderer;
+} else if (self) {
+  self.ReportRenderer = ReportRenderer;
 }
 
 /** @typedef {{id: string, weight: number, score: number, result: {description: string, displayValue: string, helpText: string, score: number|boolean, details: DetailsRenderer.DetailsJSON|undefined}}} */

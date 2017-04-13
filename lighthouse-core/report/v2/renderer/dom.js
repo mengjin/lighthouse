@@ -15,7 +15,7 @@
  */
 'use strict';
 
-/* globals URL */
+/* globals URL self */
 
 class DOM {
   /**
@@ -48,11 +48,19 @@ class DOM {
    * @throws {Error}
    */
   cloneTemplate(selector) {
-    const template = this._document.querySelector(selector);
+    const template = this._retrieveTemplate(selector);
     if (!template) {
       throw new Error(`Template not found: template${selector}`);
     }
     return this._document.importNode(template.content, true);
+  }
+
+  /**
+   * @param {string} selector
+   * @return {!DocumentFragment} The original template content
+   */
+  _retrieveTemplate(selector) {
+    return this._document.querySelector(selector);
   }
 
   /**
@@ -87,4 +95,6 @@ class DOM {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = DOM;
+} else if (self) {
+  self.DOM = DOM;
 }
