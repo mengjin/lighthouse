@@ -274,7 +274,12 @@ class ReportRenderer {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = ReportRenderer;
+  module.exports = {
+    formatDateTime,
+    formatNumber,
+    calculateRating,
+    ReportRenderer
+  };
 }
 
 /** @typedef {{id: string, weight: number, score: number, result: {description: string, displayValue: string, helpText: string, score: number|boolean, details: DetailsRenderer.DetailsJSON|undefined}}} */
