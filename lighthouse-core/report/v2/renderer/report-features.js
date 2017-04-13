@@ -33,16 +33,20 @@ class ReportFeatures {
     this.onKeyDown = this.onKeyDown.bind(this);
     this.printShortCutDetect = this.printShortCutDetect.bind(this);
 
-    this.logger = new Logger(this._document.querySelector('#lighthouse-log'));
+    const el = this._document.createElement('div');
+    el.id = 'lh-log';
+    this._document.body.appendChild(el);
+
+    this.logger = new Logger(el);
   }
 
   _addEventListeners() {
     this._setUpCollaspeDetailsAfterPrinting();
 
-    this.exportButton = this._document.querySelector('.lighthouse-export__button');
+    this.exportButton = this._document.querySelector('.lh-export__button');
     if (this.exportButton) {
       this.exportButton.addEventListener('click', this.onExportButtonClick);
-      const dropdown = this._document.querySelector('.lighthouse-export__dropdown');
+      const dropdown = this._document.querySelector('.lh-export__dropdown');
       dropdown.addEventListener('click', this.onExport);
 
       this._document.addEventListener('copy', this.onCopy);
@@ -217,7 +221,7 @@ class ReportFeatures {
    * open a `<details>` element.
    */
   expandDetailsWhenPrinting() {
-    const reportContainer = this._document.querySelector('.lighthouse-categories');
+    const reportContainer = this._document.querySelector('.lh-categories');
     const details = Array.from(reportContainer.querySelectorAll('details'));
     details.map(detail => detail.open = true);
   }

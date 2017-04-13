@@ -300,7 +300,7 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
   padding: 3px;
 }
 
-#lighthouse-log {
+#lh-log {
   position: fixed;
   background-color: #323232;
   color: #fff;
@@ -320,7 +320,7 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
   left: 0;
 }
 
-#lighthouse-log.show {
+#lh-log.show {
   opacity: 1;
   transform: translateY(0);
 }
@@ -335,20 +335,9 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
   body {
     -webkit-print-color-adjust: exact; /* print background colors */
   }
-  .lighthouse-header-wrapper {
-    position: relative !important;
-  }
-  .lighthouse-categories {
+  .lh-categories {
     margin-top: 0;
   }
-  .log-wrapper {
-    display: none;
-  }
-}
-
-/* app z-indexes */
-.log-wrapper {
-  z-index: 3;
 }
 
 /*# sourceURL=report.styles.css */

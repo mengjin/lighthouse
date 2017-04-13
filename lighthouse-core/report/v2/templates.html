@@ -26,13 +26,13 @@
 </template>
 
 <!-- Lighthouse header -->
-<template id="tmpl-lighthouse-heading">
+<template id="tmpl-lh-heading">
   <style>
     :root {
       --report-header-height: 58px;
       --report-header-bg-color: #fafafa;
     }
-    .lighthouse-header-wrapper {
+    .lh-header-wrapper {
       display: flex;
       justify-content: center;
       height: var(--report-header-height);
@@ -45,32 +45,32 @@
       will-change: transform;
       background-color: var(--report-header-bg-color);
     }
-    .lighthouse-header {
+    .lh-header {
       width: var(--report-width);
       max-width: 100%;
       display: flex;
       align-items: center;
       padding: 0 calc(var(--default-padding) * 2);
     }
-    .lighthouse-metadata {
+    .lh-metadata {
       flex: 1 1 0;
       padding-right: calc(var(--default-padding) / 2);
       line-height: 20px;
       color: var(--secondary-text-color);
       overflow-x: hidden;
     }
-    .lighthouse-metadata__results {
+    .lh-metadata__results {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .lighthouse-metadata__url {
+    .lh-metadata__url {
       color: currentColor;
     }
-    .lighthouse-export {
+    .lh-export {
       position: relative;
     }
-    .lighthouse-export__button {
+    .lh-export__button {
       background-color: #fff;
       border: 1px solid var(--report-border-color);
       border-radius: 3px;
@@ -82,15 +82,15 @@
       background-size: 20px;
       background-position: 50% 50%;
     }
-    .lighthouse-export__button:focus,
-    .lighthouse-export__button.active {
+    .lh-export__button:focus,
+    .lh-export__button.active {
       box-shadow: 1px 1px 3px #ccc;
     }
-    .lighthouse-export__button.active + .lighthouse-export__dropdown {
+    .lh-export__button.active + .lh-export__dropdown {
       opacity: 1;
       clip: rect(0, 164px, 200px, 0);
     }
-    .lighthouse-export__dropdown {
+    .lh-export__dropdown {
       position: absolute;
       background-color: #fff;
       border: 1px solid #ccc;
@@ -106,7 +106,7 @@
       opacity: 0;
       transition: all 200ms cubic-bezier(0,0,0.2,1);
     }
-    .lighthouse-export__dropdown a {
+    .lh-export__dropdown a {
       display: block;
       color: currentColor;
       text-decoration: none;
@@ -114,12 +114,12 @@
       padding: 0 12px;
       line-height: 2;
     }
-    .lighthouse-export__dropdown a:hover,
-    .lighthouse-export__dropdown a:focus {
+    .lh-export__dropdown a:hover,
+    .lh-export__dropdown a:focus {
       background-color: #efefef;
       outline: none;
     }
-    .lighthouse-export__dropdown .report-icon {
+    .lh-export__dropdown .report-icon {
       cursor: pointer;
       background-repeat: no-repeat;
       background-position: 8px 50%;
@@ -128,14 +128,14 @@
       text-indent: 18px;
     }
     /* copy icon needs slight adjustments to look great */
-    .lighthouse-export__dropdown .report-icon--copy {
+    .lh-export__dropdown .report-icon--copy {
       background-size: 16px;
       background-position: 9px 50%;
     }
-    .lighthouse-config {
+    .lh-config {
       display: flex;
     }
-    .lighthouse-env {
+    .lh-env {
       padding: var(--default-padding) 0 var(--default-padding) calc(var(--default-padding) * 2);
       left: 0;
       top: 100%;
@@ -145,69 +145,74 @@
       border-top: 1px solid var(--report-border-color);
       border-bottom: 1px solid var(--report-border-color);
     }
-    .lighthouse-env__title {
+    .lh-env__title {
       font-size: var(--header-font-size);
     }
-    .lighthouse-env__items {
+    .lh-env__items {
       margin: var(--default-padding) 0 0 0;
     }
-    .lighthouse-config__timestamp {
+    .lh-config__timestamp {
       margin-right: 6px;
     }
-    .lighthouse-config__settings-toggle {
+    .lh-config__settings-toggle {
       margin-left: 6px;
     }
-    .lighthouse-config__timestamp,
-    .lighthouse-config__settings-toggle summary {
+    .lh-config__timestamp,
+    .lh-config__settings-toggle summary {
       color: var(--secondary-text-color);
     }
-    .lighthouse-config__settings-toggle summary {
+    .lh-config__settings-toggle summary {
       display: flex;
       align-items: center;
     }
-    .lighthouse-config__settings-toggle .lighthouse-toggle-arrow {
+    .lh-config__settings-toggle .lh-toggle-arrow {
       width: 16px;
       height: 16px;
       margin-left: 2px;
     }
-    .lighthouse-config__settings-toggle[open] .lighthouse-toggle-arrow {
+    .lh-config__settings-toggle[open] .lh-toggle-arrow {
       transform: rotateZ(90deg);
     }
-    .lighthouse-config__settings-toggle summary::-moz-list-bullet {
+    .lh-config__settings-toggle summary::-moz-list-bullet {
       display: none;
     }
-    .lighthouse-config__settings-toggle summary::-webkit-details-marker {
+    .lh-config__settings-toggle summary::-webkit-details-marker {
       display: none;
     }
     @media screen and (max-width: 767px) {
-      .lighthouse-export__dropdown {
+      .lh-export__dropdown {
         right: 0;
         left: initial;
       }
-      .lighthouse-header {
+      .lh-header {
         padding: 0 var(--default-padding);
       }
     }
+    @media print {
+    .lh-header-wrapper {
+        position: relative !important;
+      }
+    }
   </style>
-  <div class="lighthouse-header-wrapper">
-    <div class="lighthouse-header">
-      <div class="lighthouse-metadata">
-        <div class="lighthouse-metadata__results">Results for: <a href="" class="lighthouse-metadata__url" target="_blank" rel="noopener"><!-- fill me --></a></div>
-        <div class="lighthouse-config">
-          <span class="lighthouse-config__timestamp"><!-- fill me --></span> &bullet;
-          <details class="lighthouse-config__settings-toggle">
+  <div class="lh-header-wrapper">
+    <div class="lh-header">
+      <div class="lh-metadata">
+        <div class="lh-metadata__results">Results for: <a href="" class="lh-metadata__url" target="_blank" rel="noopener"><!-- fill me --></a></div>
+        <div class="lh-config">
+          <span class="lh-config__timestamp"><!-- fill me --></span> &bullet;
+          <details class="lh-config__settings-toggle">
             <summary>
               <span>Runtime settings</span>
-              <span class="lighthouse-toggle-arrow" title="See report's runtime settings"></span>
+              <span class="lh-toggle-arrow" title="See report's runtime settings"></span>
             </summary>
-            <div class="lighthouse-env">
-              <div class="lighthouse-env__title">Runtime environment</div>
-              <ul class="lighthouse-env__items">
-                <template id="tmpl-lighthouse-env__items">
-                  <li class="lighthouse-env__item">
-                    <span class="lighthouse-env__name"><!-- fill me --></span>
-                    <span class="lighthouse-env__description"><!-- fill me --></span>:
-                    <b class="lighthouse-env__enabled"><!-- fill me --></b>
+            <div class="lh-env">
+              <div class="lh-env__title">Runtime environment</div>
+              <ul class="lh-env__items">
+                <template id="tmpl-lh-env__items">
+                  <li class="lh-env__item">
+                    <span class="lh-env__name"><!-- fill me --></span>
+                    <span class="lh-env__description"><!-- fill me --></span>:
+                    <b class="lh-env__enabled"><!-- fill me --></b>
                   </li>
                 </template>
               </ul>
@@ -215,9 +220,9 @@
           </details>
         </div>
       </div>
-      <div class="lighthouse-export">
-        <button class="report-icon report-icon--share lighthouse-export__button" title="Export report"></button>
-        <div class="lighthouse-export__dropdown">
+      <div class="lh-export">
+        <button class="report-icon report-icon--share lh-export__button" title="Export report"></button>
+        <div class="lh-export__dropdown">
           <a href="#" class="report-icon report-icon--print" data-action="print">Print...</a>
           <a href="#" class="report-icon report-icon--copy" data-action="copy">Copy JSON</a>
           <a href="#" class="report-icon report-icon--download" data-action="save-html">Save as HTML</a>
@@ -230,9 +235,9 @@
 </template>
 
 <!-- Lighthouse footer -->
-<template id="tmpl-lighthouse-footer">
+<template id="tmpl-lh-footer">
   <style>
-    .lighthouse-footer {
+    .lh-footer {
       text-align: center;
       line-height: 90px;
       border-top: 1px solid var(--report-border-color);
@@ -240,9 +245,9 @@
       border-top: 1px solid var(--report-border-color);
     }
   </style>
-  <footer class="lighthouse-footer">
-    Generated by <b>Lighthouse</b> <span class="lighthouse-footer__version"><!-- fill me --></span> on
-    <span class="lighthouse-footer__timestamp"><!-- fill me --></span> |
+  <footer class="lh-footer">
+    Generated by <b>Lighthouse</b> <span class="lh-footer__version"><!-- fill me --></span> on
+    <span class="lh-footer__timestamp"><!-- fill me --></span> |
     <a href="https://github.com/GoogleChrome/Lighthouse/issues" target="_blank" rel="noopener">File an issue</a>
   </footer>
 </template>
