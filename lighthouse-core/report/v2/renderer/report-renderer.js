@@ -220,12 +220,12 @@ class ReportRenderer {
    * @return {!Element}
    */
   _renderReport(report) {
-    const container = this._dom._createElement('div', 'lighthouse-content');
-    const element = container.appendChild(this._createElement('div', 'lh-report'));
+    const container = this._dom.createElement('div', 'lh-content');
+    const element = container.appendChild(this._dom.createElement('div', 'lh-report'));
 
     element.appendChild(this._renderReportHeader(report));
 
-    const categories = element.appendChild(this._createElement('div', 'lh-categories'));
+    const categories = element.appendChild(this._dom.createElement('div', 'lh-categories'));
     for (const category of report.reportCategories) {
       categories.appendChild(this._renderCategory(category));
     }
