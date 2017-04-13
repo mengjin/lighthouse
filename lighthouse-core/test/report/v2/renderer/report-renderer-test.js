@@ -79,13 +79,21 @@ describe('ReportRenderer V2', () => {
     });
   });
 
-  describe('renderReport', () => {
+  describe.only('renderReport', () => {
     it('should render a report', () => {
       const container = renderer._dom._document.body;
       const output = renderer.renderReport(sampleResults, container);
       assert.ok(output.classList.contains('lh-report'));
       assert.ok(container.contains(output), 'report appended to container');
       assert.ok(container.querySelector('.lh-header'), 'report has header');
+    });
+
+    it('renders additional reports by replacing the existing one', () => {
+      const container = renderer._dom._document.body;
+      const oldReport = renderer.renderReport(sampleResults, container);
+      const newReport = renderer.renderReport(sampleResults, container);
+      assert.ok(!container.contains(oldReport), 'old report was removed');
+      assert.ok(container.contains(newReport), 'new report appended to container');
     });
 
     it('should render an exception for invalid input', () => {
