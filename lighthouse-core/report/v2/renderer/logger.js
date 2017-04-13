@@ -17,8 +17,6 @@
 
 'use strict';
 
-/* eslint-env browser */
-
 /**
  * Logs messages via a UI butter.
  * @class

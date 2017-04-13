@@ -15,8 +15,7 @@
  */
 'use strict';
 
-/* globals Logger */
-/* eslint-env browser */
+/* globals document window URL Blob Logger */
 
 class ReportFeatures {
 
