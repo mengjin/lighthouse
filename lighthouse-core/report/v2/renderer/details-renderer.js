@@ -24,7 +24,7 @@ class DetailsRenderer {
   }
 
   /**
-   * @param (!DetailsRenderer.DetailsJSON|!DetailsRenderer.CardsDetailsJSON)} details
+   * @param {(!DetailsRenderer.DetailsJSON|!DetailsRenderer.CardsDetailsJSON)} details
    * @return {!Element}
    */
   render(details) {
