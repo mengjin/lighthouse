@@ -28,7 +28,7 @@ class DOM {
  /**
    * @param {string} name
    * @param {string=} className
-   * @param {!Object<string, string>=} attrs Attribute key/val pairs.
+   * @param {!Object<?string, ?string>=} attrs Attribute key/val pairs.
    * @return {!Element}
    */
   createElement(name, className, attrs = {}) {

@@ -85,18 +85,18 @@ class DetailsRenderer {
   }
 
   /**
-   * @param {!DetailsJSON} list
+   * @param {!CardsDetailsJSON} details
    * @return {!Element}
    */
-  _renderCards(list) {
+  _renderCards(details) {
     const element = this._dom.createElement('details', 'lighthouse-details');
-    if (list.header) {
-      element.appendChild(this._dom.createElement('summary')).textContent = list.header.text;
+    if (details.header) {
+      element.appendChild(this._dom.createElement('summary')).textContent = details.header.text;
     }
 
-    const items = this._dom.createElement('div', 'lighthouse-scorecards');
-    for (const item of list.items) {
-      const card = items.appendChild(
+    const cardsParent = this._dom.createElement('div', 'lighthouse-scorecards');
+    for (const item of details.items) {
+      const card = cardsParent.appendChild(
           this._dom.createElement('div', 'lighthouse-scorecard', {title: item.snippet}));
       const titleEl = this._dom.createElement('div', 'lighthouse-scorecard__title');
       const valueEl = this._dom.createElement('div', 'lighthouse-scorecard__value');
@@ -110,7 +110,7 @@ class DetailsRenderer {
       }
     }
 
-    element.appendChild(items);
+    element.appendChild(cardsParent);
     return element;
   }
 }
@@ -121,3 +121,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 /** @typedef {{type: string, text: string|undefined, header: DetailsJSON|undefined, items: Array<DetailsJSON>|undefined}} */
 DetailsRenderer.DetailsJSON; // eslint-disable-line no-unused-expressions
+
+
+/** @typedef {{type: string, text: string, header: DetailsJSON, items: Array<{title: string, value: string, snippet: string|undefined, target: string}>}} */
+DetailsRenderer.CardsDetailsJSON; // eslint-disable-line no-unused-expressions
