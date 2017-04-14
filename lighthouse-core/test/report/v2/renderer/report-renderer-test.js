@@ -33,16 +33,14 @@ describe('ReportRenderer V2', () => {
 
   before(() => {
     global.URL = URL;
-    global.DOM = DOM;
-    global.DetailsRenderer = DetailsRenderer;
     const document = jsdom.jsdom(TEMPLATE_FILE);
-    renderer = new ReportRenderer(document);
+    const dom = new DOM(document);
+    const detailsRenderer = new DetailsRenderer(dom);
+    renderer = new ReportRenderer(dom, detailsRenderer);
   });
 
   after(() => {
     global.URL = undefined;
-    global.DOM = undefined;
-    global.DetailsRenderer = undefined;
   });
 
   describe('renderReport', () => {
