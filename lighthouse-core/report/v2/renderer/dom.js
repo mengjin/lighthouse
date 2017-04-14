@@ -23,6 +23,7 @@ class DOM {
    */
   constructor(document) {
     this._document = document;
+    this.templatesContext = this._document;
   }
 
  /**
@@ -48,19 +49,11 @@ class DOM {
    * @throws {Error}
    */
   cloneTemplate(selector) {
-    const template = this._retrieveTemplate(selector);
+    const template = this.templatesContext.querySelector(selector);
     if (!template) {
       throw new Error(`Template not found: template${selector}`);
     }
     return this._document.importNode(template.content, true);
-  }
-
-  /**
-   * @param {string} selector
-   * @return {!DocumentFragment} The original template content
-   */
-  _retrieveTemplate(selector) {
-    return this._document.querySelector(selector);
   }
 
   /**

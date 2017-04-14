@@ -56,8 +56,8 @@ function formatNumber(number) {
 
 class ReportRenderer {
   /**
-   * @param {!DOM} DOM
-   * @param {!DetailsRenderer} DetailsRenderer
+   * @param {!DOM} dom
+   * @param {!DetailsRenderer} detailsRenderer
    */
   constructor(dom, detailsRenderer) {
     this._dom = dom;
