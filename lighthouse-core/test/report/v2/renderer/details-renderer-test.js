@@ -113,8 +113,8 @@ describe('DetailsRenderer', () => {
       });
 
       const textChild = el.querySelector('.lh-block > .lh-text');
-      const listChild = el.querySelector('.lh-block > .lh-list');
-      const textSubChild = el.querySelector('.lh-block .lh-list .lh-text');
+      const listChild = el.querySelector('.lh-block > .lh-details');
+      const textSubChild = el.querySelector('.lh-block .lh-details .lh-text');
       assert.ok(textChild, 'did not render text children');
       assert.ok(listChild, 'did not render list child');
       assert.ok(textSubChild, 'did not render sub-children');
@@ -131,21 +131,21 @@ describe('DetailsRenderer', () => {
       };
 
       const details = renderer._renderCards(list);
-      assert.ok(details.classList.contains('lighthouse-details'));
+      assert.ok(details.classList.contains('lh-details'));
       assert.equal(details.querySelector('summary').textContent, 'View details');
 
-      const cards = details.querySelectorAll('.lighthouse-scorecards > .lighthouse-scorecard');
+      const cards = details.querySelectorAll('.lh-scorecards > .lh-scorecard');
       assert.ok(cards.length, list.items.length, `renders ${list.items.length} cards`);
       assert.equal(cards[0].hasAttribute('title'), false,
           'does not add title attr if snippet is missing');
-      assert.equal(cards[0].querySelector('.lighthouse-scorecard__title').textContent,
+      assert.equal(cards[0].querySelector('.lh-scorecard__title').textContent,
           'Total DOM Nodes', 'fills title');
-      assert.equal(cards[0].querySelector('.lighthouse-scorecard__value').textContent,
+      assert.equal(cards[0].querySelector('.lh-scorecard__value').textContent,
           '3500', 'fills value');
-      assert.equal(cards[0].querySelector('.lighthouse-scorecard__target').textContent,
+      assert.equal(cards[0].querySelector('.lh-scorecard__target').textContent,
           'target: 1,500 nodes', 'fills target');
       assert.equal(cards[1].getAttribute('title'), 'snippet', 'adds title attribute for snippet');
-      assert.ok(!cards[1].querySelector('.lighthouse-scorecard__target'), 'handles missing target');
+      assert.ok(!cards[1].querySelector('.lh-scorecard__target'), 'handles missing target');
     });
   });
 });

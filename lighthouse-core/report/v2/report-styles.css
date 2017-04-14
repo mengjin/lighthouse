@@ -64,8 +64,8 @@ body {
 }
 
 /* List */
-.kh-list__items {
-  padding-left: 10px;
+.lh-list__items {
+  padding-left: var(--default-padding);
 }
 
 .lh-list__items > * {
@@ -74,11 +74,11 @@ body {
 }
 
 /* Card */
-.lighthouse-scorecards {
+.lh-scorecards {
   display: flex;
   flex-wrap: wrap;
 }
-.lighthouse-scorecard {
+.lh-scorecard {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +92,7 @@ body {
   line-height: inherit;
   border: 1px solid #ebebeb;
 }
-.lighthouse-scorecard__title {
+.lh-scorecard__title {
   background-color: #eee;
   position: absolute;
   top: 0;
@@ -103,10 +103,10 @@ body {
   align-items: center;
   padding: calc(var(--default-padding) / 2);
 }
-.lighthouse-scorecard__value {
+.lh-scorecard__value {
   font-size: 28px;
 }
-.lighthouse-scorecard__target {
+.lh-scorecard__target {
   margin-top: calc(var(--default-padding) / 2);
 }
 

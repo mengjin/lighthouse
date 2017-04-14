@@ -69,7 +69,7 @@ class DetailsRenderer {
    * @return {!Element}
    */
   _renderList(list) {
-    const element = this._dom.createElement('details', 'lh-list');
+    const element = this._dom.createElement('details', 'lh-details');
     if (list.header) {
       const summary = this._dom.createElement('summary', 'lh-list__header');
       summary.textContent = list.header.text;
@@ -89,18 +89,18 @@ class DetailsRenderer {
    * @return {!Element}
    */
   _renderCards(details) {
-    const element = this._dom.createElement('details', 'lighthouse-details');
+    const element = this._dom.createElement('details', 'lh-details');
     if (details.header) {
       element.appendChild(this._dom.createElement('summary')).textContent = details.header.text;
     }
 
-    const cardsParent = this._dom.createElement('div', 'lighthouse-scorecards');
+    const cardsParent = this._dom.createElement('div', 'lh-scorecards');
     for (const item of details.items) {
       const card = cardsParent.appendChild(
-          this._dom.createElement('div', 'lighthouse-scorecard', {title: item.snippet}));
-      const titleEl = this._dom.createElement('div', 'lighthouse-scorecard__title');
-      const valueEl = this._dom.createElement('div', 'lighthouse-scorecard__value');
-      const targetEl = this._dom.createElement('div', 'lighthouse-scorecard__target');
+          this._dom.createElement('div', 'lh-scorecard', {title: item.snippet}));
+      const titleEl = this._dom.createElement('div', 'lh-scorecard__title');
+      const valueEl = this._dom.createElement('div', 'lh-scorecard__value');
+      const targetEl = this._dom.createElement('div', 'lh-scorecard__target');
 
       card.appendChild(titleEl).textContent = item.title;
       card.appendChild(valueEl).textContent = item.value;
