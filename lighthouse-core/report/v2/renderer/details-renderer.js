@@ -87,7 +87,7 @@ class DetailsRenderer {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = DetailsRenderer;
-} else if (self) {
+} else {
   self.DetailsRenderer = DetailsRenderer;
 }
 

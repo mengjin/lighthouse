@@ -95,6 +95,6 @@ class DOM {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = DOM;
-} else if (self) {
+} else {
   self.DOM = DOM;
 }

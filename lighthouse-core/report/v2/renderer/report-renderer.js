@@ -56,12 +56,12 @@ function formatNumber(number) {
 
 class ReportRenderer {
   /**
-   * @param {!Document} document
    * @param {!DOM} DOM
    * @param {!DetailsRenderer} DetailsRenderer
    */
-  constructor(document, DOM, DetailsRenderer) {
-    this._detailsRenderer = new DetailsRenderer(this._dom);
+  constructor(dom, detailsRenderer) {
+    this._dom = dom;
+    this._detailsRenderer = detailsRenderer;
   }
 
   /**
@@ -184,7 +184,7 @@ class ReportRenderer {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = ReportRenderer;
-} else if (self) {
+} else {
   self.ReportRenderer = ReportRenderer;
 }
 
