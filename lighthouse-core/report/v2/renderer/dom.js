@@ -29,7 +29,7 @@ class DOM {
    * @param {string} name
    * @param {string=} className
    * @param {!Object<string, (string|undefined)>=} attrs Attribute key/val pairs.
-   *     Note: uf an attribute key has an undefined value, this method does not
+   *     Note: if an attribute key has an undefined value, this method does not
    *     set the attribute on the node.
    * @return {!Element}
    */
